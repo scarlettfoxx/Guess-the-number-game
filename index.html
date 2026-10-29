@@ -1,103 +1,116 @@
-<doctype html>
-  <html>
-    <head>
-      <title>Guess the number game</title>
-      <style>
-        body {
-          background: #1a1025;
-          color: #e0d4ff;
-          font-family: 'poppins', Arial, sans-serif;
-          text-align: center;
-          padding-top: 80px
-          margin: 0;
-          }
-        h1 {
-          color: #c084fc
-          font-weight: 600;
-          margin-bottom: 10px;
-          font-size: 2.4em;
-          }
-        
-        p {
-          font-size: 1.1em;
-          margin-bottom: 30px;
-          }
-        
-        input {
-          padding: 14px;
-          font-size: 20px;
-          width: 140px;
-          text-align: center;
-          border-radius: 8px;
-          border: 2px solid #a855f7;
-          margin-bottom: 25px;
-          background color: #2e1a47;
-          color: #cd00cd;
-          font-family: 'poppins', sans-serif;
-          outline: none;
-          }
-        
-        button {
-          dipplay: block;
-          margin: 0 auto;
-          padding: 14px 32px;
-          font-size: 17px;
-          background-color: #a855f7;
-          color: white;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
-          font-weight: 600;
-          font-family: 'Poppins', sans-serif;
-          }
-        
-        button:hover {
-          background-color: #9333ea;
-          }
-        
-        #message {
-          margin-top: 35px;
-          font-size: 20px;
-          font-weight: 500;
-          min-height: 30px;
-          }
-      </style>
-    </head>
-    <body>
-      <h1>Guess the number</h1>
-      <p>I'm thinking of a number between 1 and 1000</p>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Guess the Number</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+background-color: #1a1025;
+color: #e0d4ff;
+font-family: 'Poppins', Arial, sans-serif;
+margin: 0;
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
 
-      <input type="number" id="guessInput" placeholder="Type here" min="1" max="1000">
-      
-        <button onclick="checkGuess()">Guess</button>
-      
-      <p id="message"></p>
-      
-      <script>
-        const secretNumber = Mth.floor(Math.random() * 1000) + 1;
-        let attempts = 0;
+.container {
+max-width: 420px;
+width: 100%;
+padding: 20px;
+}
 
-        function checkGuess() {
-          const userGuess = Number(document.getElementById("guessInput").value);
-          const message = document.getElementbyId("message");
-          attempts++;
+h1 {
+color: #c084fc;
+font-weight: 600;
+font-size: 2.3em;
+margin-bottom: 12px;
+}
 
-          if (!userGuess) {
-            message.textContent = "Please enter a number!";
-            message.style.color = #f87171";
-              return;
-            }
-          if (userGuess === secretNumber) {
-            message.textContent = "Congatualations!!! You got it in " + attempts + " tries!";
-            message.style.color = #4ade80";
-              } else if (userGuess < secretNumber) {
-            message.textcontent = "Too low, Try a higher number.";
-            message.style.color = "#facc15";
-            } else {
-            message.textContent = "Too high, Try a lower number!";
-            message.style.color = "#f87171";
-            }
-          }
-      </script>
-    </body>
-  </html>
+p {
+font-size: 1.1em;
+margin-bottom: 30px;
+}
+
+input {
+padding: 14px;
+font-size: 20px;
+width: 150px;
+text-align: center;
+border-radius: 8px;
+border: 2px solid #a855f7;
+margin-bottom: 20px;
+background-color: #2e1a47;
+color: #ffffff;
+font-family: 'Poppins', sans-serif;
+outline: none;
+}
+
+button {
+padding: 14px 32px;
+font-size: 17px;
+background-color: #a855f7;
+color: white;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+font-weight: 600;
+font-family: 'Poppins', sans-serif;
+}
+
+button:hover {
+background-color: #9333ea;
+}
+
+#message {
+margin-top: 30px;
+font-size: 19px;
+font-weight: 500;
+min-height: 28px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Guess the Number</h1>
+<p>I'm thinking of a number between 1 and 1000</p>
+
+<input type="number" id="guessInput" placeholder="Type here" min="1" max="1000">
+<br>
+<button onclick="checkGuess()">Guess</button>
+
+<p id="message"></p>
+</div>
+
+<script>
+const secretNumber = Math.floor(Math.random() * 1000) + 1;
+let attempts = 0;
+
+function checkGuess() {
+const userGuess = Number(document.getElementById("guessInput").value);
+const message = document.getElementById("message");
+attempts++;
+
+if (!userGuess) {
+message.textContent = "Please enter a number!";
+message.style.color = "#f87171";
+return;
+}
+
+if (userGuess === secretNumber) {
+message.textContent = "Congratulations!!! You got it in " + attempts + " tries!";
+message.style.color = "#4ade80";
+} else if (userGuess < secretNumber) {
+message.textContent = "Too low! Try a higher number.";
+message.style.color = "#facc15";
+} else {
+message.textContent = "Too high! Try a lower number.";
+message.style.color = "#f87171";
+}
+}
+</script>
+</body>
+</html>
