@@ -74,29 +74,27 @@
       <p id="message"></p>
       
       <script>
-        const secretNumber = Math.floor(math.random() * 1000) + 1;
+        const secretNumber = Mth.floor(Math.random() * 1000) + 1;
         let attempts = 0;
-        
-        function checkguess() {
-          const userguess = Number(document.getElementbyId("guessinput").value);
-          const message = document.getElementById("message");
+
+        function checkGuess() {
+          const userGuess = Number(document.getElementById("guessInput").value);
+          const message = document.getElementbyId("message");
           attempts++;
 
-          if(!userGues) {
+          if (!userGuess) {
             message.textContent = "Please enter a number!";
-            message.style.color = "#f87171";
-            return;
+            message.style.color = #f87171";
+              return;
             }
-
-          if (userGuess === secretnumber) {
-          if(!userGues) {
-            message.textContent = 'Congratualations!!! You got it in ${attempts} tries!';
-            messge.style.color= "#4ade80";
-            } else if (userGuess < secretnumber) {
+          if (userGuess === secretNumber) {
+            message.textContent = "Congatualations!!! You got it in " + attempts + " tries!";
+            message.style.color = #4ade80";
+              } else if (userGuess < secretNumber) {
             message.textcontent = "Too low, Try a higher number.";
             message.style.color = "#facc15";
             } else {
-            message.textcontent = "Too high, Try a lower number!";
+            message.textContent = "Too high, Try a lower number!";
             message.style.color = "#f87171";
             }
           }
