@@ -111,6 +111,12 @@ message.textContent = "Too high! Try a lower number.";
 message.style.color = "#f87171";
 }
 }
+  // Allow pressing Enter to guess
+  document.getElementById("guessInput").addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+      checkGuess();
+      }
+    });
 </script>
 </body>
 </html>
