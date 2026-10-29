@@ -17,24 +17,31 @@
           margin-bottom: 10px;
           font-size: 2.4em;
           }
+        
         p {
           font-size: 1.1em;
+          margin-bottom: 30px;
           }
+        
         input {
-          padding: 12px;
-          font-size: 18px;
-          width: 120px;
+          padding: 14px;
+          font-size: 20px;
+          width: 140px;
           text-align: center;
           border-radius: 8px;
-          border: none;
-          margin: 20px 0;
+          border: 2px solid #a855f7;
+          margin-bottom: 25px;
           background color: #2e1a47;
           color: white;
           font-family: 'poppins', sans-serif;
+          outline: none;
           }
+        
         button {
-          padding: 12px 28px;
-          font-size: 16px;
+          dipplay: block;
+          margin: 0 auto;
+          padding: 14px 32px;
+          font-size: 17px;
           background-color: #a855f7;
           color: white;
           border: none;
@@ -43,14 +50,16 @@
           font-weight: 600;
           font-family: 'Poppins', sans-serif;
           }
+        
         button:hover {
           background-color: #9333ea;
           }
+        
         #message {
-          margin-top: 30px;
-          font-size: 20px
+          margin-top: 35px;
+          font-size: 20px;
           font-weight: 500;
-          min-height: 30px
+          min-height: 30px;
           }
       </style>
     </head>
@@ -58,8 +67,8 @@
       <h1>Guess the number</h1>
       <p>I'm thinking of a number between 1 and 1000</p>
 
-      <input type="number" id="guessInput" placeholder="
-        <br>
+      <input type="number" id="guessInput" placeholder="Type here" min="1" max="1000">
+      
         <button onclick="checkGuess()">Guess</button>
       
       <p id="message"></p>
@@ -80,13 +89,14 @@
             }
 
           if (userGuess === secretnumber) {
-            message.textContent = 'Congratualations!!! You got it in $(attempts) tries!';
+          if(!userGues) {
+            message.textContent = 'Congratualations!!! You got it in ${attempts} tries!';
             messge.style.color= "#4ade80";
             } else if (userGuess < secretnumber) {
-            message.textcontent = "Too low, Try a bigger number.";
+            message.textcontent = "Too low, Try a higher number.";
             message.style.color = "#facc15";
             } else {
-            message.textcontent = "Too high, Try a different number!";
+            message.textcontent = "Too high, Try a lower number!";
             message.style.color = "#f87171";
             }
           }
