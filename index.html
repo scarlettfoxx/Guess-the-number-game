@@ -59,10 +59,22 @@ border-radius: 8px;
 cursor: pointer;
 font-weight: 600;
 font-family: 'Poppins', sans-serif;
+margin: 8px;
 }
 
 button:hover {
 background-color: #9333ea;
+}
+
+.new-game {
+background-color: transparent;
+border: 2px solid #c084fc;
+color: #c084fc;
+}
+
+.new-game:hover {
+background-color: #c084fc;
+color: #1a1025;
 }
 
 #message {
@@ -70,6 +82,12 @@ margin-top: 30px;
 font-size: 19px;
 font-weight: 500;
 min-height: 28px;
+}
+
+#attempts {
+margin-top: 12px;
+font-size: 15px;
+opacity: 0.8;
 }
 </style>
 </head>
@@ -81,26 +99,29 @@ min-height: 28px;
 <input type="number" id="guessInput" placeholder="Type here" min="1" max="1000">
 <br>
 <button onclick="checkGuess()">Guess</button>
+<button class="new-game" onclick="newGame()">New Game</button>
 
 <p id="message"></p>
-
-  <button onclick="newGame()" style="margin-top: 25px; background-color: transparent; border: 2px solid #c094fc;  color; #c084fc;">New Game </button>
+<p id="attempts">Attempts: 0</p>
 </div>
 
 <script>
-let SecretNumber = Math.floor(Math.random() * 1000) + 1;
+let secretNumber = Math.floor(Math.random() * 1000) + 1;
 let attempts = 0;
 
 function checkGuess() {
 const userGuess = Number(document.getElementById("guessInput").value);
 const message = document.getElementById("message");
-attempts++;
+const attemptsText = document.getElementById("attempts");
 
-if (!userGuess) {
-message.textContent = "Please enter a number!";
+if (!userGuess || userGuess < 1 || userGuess > 1000) {
+message.textContent = "Please enter a number between 1 and 1000";
 message.style.color = "#f87171";
 return;
 }
+
+attempts++;
+attemptsText.textContent = "Attempts: " + attempts;
 
 if (userGuess === secretNumber) {
 message.textContent = "Congratulations!!! You got it in " + attempts + " tries!";
@@ -112,19 +133,26 @@ message.style.color = "#facc15";
 message.textContent = "Too high! Try a lower number.";
 message.style.color = "#f87171";
 }
+
+document.getElementById("guessInput").value = "";
+document.getElementById("guessInput").focus();
 }
-  // Allow pressing Enter to guess
-  document.getElementById("guessInput").addEventListener("keyup", function(event) {
-    if (event.key === "Enter") {
-      checkGuess();
-      }
-    });
-  function newGame() {
-    secretNumber = Math.floor(Math.random() * 1000) + 1;
-    attempts = 0;
-    document.getElementById("message").textContent = "";
-    document.getElementById("guessInput").value = "";
-    document.getElementById("guessInput").focus();
+
+function newGame() {
+secretNumber = Math.floor(Math.random() * 1000) + 1;
+attempts = 0;
+document.getElementById("message").textContent = "";
+document.getElementById("attempts").textContent = "Attempts: 0";
+document.getElementById("guessInput").value = "";
+document.getElementById("guessInput").focus();
+}
+
+// Press Enter to guess
+document.getElementById("guessInput").addEventListener("keyup", function(event) {
+if (event.key === "Enter") {
+checkGuess();
+}
+});
 </script>
 </body>
 </html>
