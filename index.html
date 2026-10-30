@@ -88,7 +88,7 @@ min-height: 28px;
 </div>
 
 <script>
-const secretNumber = Math.floor(Math.random() * 1000) + 1;
+let SecretNumber = Math.floor(Math.random() * 1000) + 1;
 let attempts = 0;
 
 function checkGuess() {
@@ -119,6 +119,12 @@ message.style.color = "#f87171";
       checkGuess();
       }
     });
+  function newGame() {
+    secretNumber = Math.floor(Math.random() * 1000) + 1;
+    attempts = 0;
+    document.getElementById("message").textContent = "";
+    document.getElementById("guessInput").value = "";
+    document.getElementById("guessInput").focus();
 </script>
 </body>
 </html>
