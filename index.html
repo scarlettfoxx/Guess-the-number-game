@@ -127,6 +127,14 @@ attemptsText.textContent = "Attempts: " + attempts;
 if (userGuess === secretNumber) {
 message.textContent = "Congratulations!!! You got it in " + attempts + " tries!";
 message.style.color = "#4ade80";
+
+  confetti({
+    particlecount:160,
+    spread: 70,
+    orgin: { y: 0.6 }
+    });
+  }
+  
 } else if (userGuess < secretNumber) {
 message.textContent = "Too low! Try a higher number.";
 message.style.color = "#facc15";
