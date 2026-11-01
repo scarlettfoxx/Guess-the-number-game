@@ -33,17 +33,19 @@ margin-bottom: 12px;
 
 p {
 font-size: 1.1em;
-margin-bottom: 30px;
+margin-bottom: 20px;
 }
-  .dfficulty {
-    margin-bottom: 25px;
-    }
-  .difficulty button {
-    margin: 5px;
-    padding: 10px 18px;
-    font-size: 15px;
-    }
-  
+
+.difficulty {
+margin-bottom: 25px;
+}
+
+.difficulty button {
+margin: 5px;
+padding: 10px 18px;
+font-size: 15px;
+}
+
 input {
 padding: 14px;
 font-size: 20px;
@@ -59,8 +61,8 @@ outline: none;
 }
 
 button {
-padding: 14px 32px;
-font-size: 17px;
+padding: 14px 28px;
+font-size: 16px;
 background-color: #a855f7;
 color: white;
 border: none;
@@ -68,7 +70,7 @@ border-radius: 8px;
 cursor: pointer;
 font-weight: 600;
 font-family: 'Poppins', sans-serif;
-margin: 8px;
+margin: 6px;
 }
 
 button:hover {
@@ -87,17 +89,17 @@ color: #1a1025;
 }
 
 #message {
-margin-top: 30px;
-font-size: 19px;
+margin-top: 25px;
+font-size: 18px;
 font-weight: 500;
 min-height: 28px;
 }
 
 #info {
-  margin-top: 12px;
-  font-size: 15px;
-  opacity: 0.85;
-  }
+margin-top: 12px;
+font-size: 15px;
+opacity: 0.85;
+}
 </style>
 </head>
 <body>
@@ -105,16 +107,16 @@ min-height: 28px;
 <h1>Guess the Number</h1>
 
 <div class="difficulty">
-  <p>Choose Difficulty:</p>
-  <button onclick="setDifficulty('easy')">Easy</button>
-  <button onclick="setDifficulty('medium')">Medium</button>
-  <button onclick="setDifficulty('hard')">Hard</button>
+<p>Choose Difficulty:</p>
+<button onclick="setDifficulty('easy')">Easy</button>
+<button onclick="setDifficulty('medium')">Medium</button>
+<button onclick="setDifficulty('hard')">Hard</button>
 </div>
 
-  <p id= "rangeText">Select a difficulty to start</p>
+<p id="rangeText">Select a difficulty to start</p>
 
-  <input type="number" id="guessInput" placeholders="Type here" disabled>
-  <br>
+<input type="number" id="guessInput" placeholder="Type here" disabled>
+<br>
 <button onclick="checkGuess()" id="guessBtn" disabled>Guess</button>
 <button class="new-game" onclick="newGame()">New Game</button>
 
@@ -130,86 +132,87 @@ let attempts = 0;
 let gameStarted = false;
 
 function setDifficulty(level) {
-  if (level === 'easy') {
-    maxNumber = 100;
-    maxAttemps = 10;
-    } else if (level=== 'medium') {
-    maxNumber = 500;
-    maxAttempts = 8;
-    } else {
-    maxNumber = 1000;
-    maxAttempts = 7;
-    }
+if (level === 'easy') {
+maxNumber = 100;
+maxAttempts = 10;
+} else if (level === 'medium') {
+maxNumber = 500;
+maxAttempts = 8;
+} else {
+maxNumber = 1000;
+maxAttempts = 6;
+}
 
-  secretNumber = Math.floor(Math.random() * maxNumber) + 1;
-  attempts = 0;
-  gameStarted = true;
+secretNumber = Math.floor(Math.random() * maxNumber) + 1;
+attempts = 0;
+gameStarted = true;
 
-  document.getElementById("rangeText").textContent = 'I'm thinking of a number between 1 and ${maxNumber}';
-  document.getElementById("info").textContent = 'Attempts left: ${maxAttempts}';
-  document.getElementById("message").textContent = "";
-  document.getElementById("guessInput").disabled = false;
-  document.getElementById("guessBtn").disabled = false;
-  document.getElementById("guessInput").value= = "";
-  document.getElementById("guessInput").focus();
+document.getElementById("rangeText").textContent = `I'm thinking of a number between 1 and ${maxNumber}`;
+document.getElementById("info").textContent = `Attempts left: ${maxAttempts}`;
+document.getElementById("message").textContent = "";
+document.getElementById("guessInput").disabled = false;
+document.getElementById("guessBtn").disabled = false;
+document.getElementById("guessInput").value = "";
+document.getElementById("guessInput").focus();
+}
 
-  function checkGuess() {
-    if (!gameStarted) return;
-  
+function checkGuess() {
+if (!gameStarted) return;
+
 const userGuess = Number(document.getElementById("guessInput").value);
 const message = document.getElementById("message");
 const info = document.getElementById("info");
 
 if (!userGuess || userGuess < 1 || userGuess > maxNumber) {
-message.textContent = 'Please enter a number between 1 and ${maxNumber}';
+message.textContent = `Please enter a number between 1 and ${maxNumber}`;
 message.style.color = "#f87171";
 return;
 }
 
 attempts++;
-    const attemptsLeft = maxAttempts - attempts;
-    info.textContent = 'Attempts left: ${attemptsLeft}';
+const attemptsLeft = maxAttempts - attempts;
+info.textContent = `Attempts left: ${attemptsLeft}`;
 
 if (userGuess === secretNumber) {
-message.textContent = 'Congratulations!!! You got it in ${attempts} tries!';
+message.textContent = `Congratulations!!! You got it in ${attempts} tries!`;
 message.style.color = "#4ade80";
-  
-  confetti({
-    particleCount:170,
-    spread: 70,
-    origin: { y: 0.6 }
-    });
-  endGame();
+confetti({
+particleCount: 150,
+spread: 70,
+origin: { y: 0.6 }
+});
+endGame();
 } else if (attempts >= maxAttempts) {
-message.textContent = 'Game Over! The number was ${secretNumber}';
+message.textContent = `Game Over! The number was ${secretNumber}`;
 message.style.color = "#f87171";
-  endGame();
+endGame();
 } else if (userGuess < secretNumber) {
-  message.textContent = "Too low! Try a higher number.";
-  message.style.color = "#facc15";
+message.textContent = "Too low! Try a higher number.";
+message.style.color = "#facc15";
 } else {
 message.textContent = "Too high! Try a lower number.";
 message.style.color = "#f87171";
 }
 
-document.getElementById("guessInput").disabled = true;
+document.getElementById("guessInput").value = "";
 document.getElementById("guessInput").focus();
 }
 
-  function endGame() {
-    document.getElementById("guessInput").disabled = true;
-    document.getElementById("guessBtn").disabled = true;
-    gameStarted = false;
+function endGame() {
+document.getElementById("guessInput").disabled = true;
+document.getElementById("guessBtn").disabled = true;
+gameStarted = false;
+}
 
-  funtion newGame() {
-    document.getElementById("rangeText").textContent = "Select a difficulty to start";
-    document.getElementById("message").textContent = "";
-    document.getElementById("info").textContent = "";
-    document.getElementById("guessInput").value = "";
-    document.getElementById("guessInput").disabled = true;
-    document.getElementById("guessBtn").disabled = true;
-    gameStarted = false;
-    }
+function newGame() {
+document.getElementById("rangeText").textContent = "Select a difficulty to start";
+document.getElementById("message").textContent = "";
+document.getElementById("info").textContent = "";
+document.getElementById("guessInput").value = "";
+document.getElementById("guessInput").disabled = true;
+document.getElementById("guessBtn").disabled = true;
+gameStarted = false;
+}
 
 // Press Enter to guess
 document.getElementById("guessInput").addEventListener("keyup", function(event) {
