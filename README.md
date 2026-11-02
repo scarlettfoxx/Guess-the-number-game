@@ -1,8 +1,8 @@
 # Guess-the-number-game
-A simple, easy to play, and fun browser game that becomes addicting to play (I hope)
+A simple, easy to play, and fun browser game that becomes addicting to play (Hopefully).
 
 ## About
-This is a Guess the Number game that I built as part of the Hack Club / Terra challenge
+This is a Guess the Number game that I built as part of the Hack Club / Terra challenge.
 The computer picks random numbers and the user has to attempt to guess it.
 
 ## Features
