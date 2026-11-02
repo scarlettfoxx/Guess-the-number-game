@@ -23,3 +23,9 @@ The computer picks random numbers and the user has to attempt to guess it.
 
 ## Live Demo
 [ Play the game here ](https://scarlettfoxx.github.io/Guess-the-number-game/)
+
+## Screenshot
+<img width="385" height="452" alt="image" src="https://github.com/user-attachments/assets/861c83fa-1b1c-44dd-8064-4f90d8bbecd4" />
+
+## Who I made it for:
+I made it for the terra challenge in hack club.
